@@ -4,14 +4,18 @@ import sys
 
 def main():
 
+	# Ensure valid number of argument passed
 	if len(sys.argv) !=  2:
 		sys.exit("Invalid number of arguments")
 
 	file = getFile(sys.argv[1])
 
+	# initialize a dictionary
 	wordTotals = {}
 
+	# split the file by word
 	for word in file.read().split():
+		# remove all whitespace, commas and periods
 		word = word.replace(" ", "").replace(",","").replace(".","").lower()
 		if word not in wordTotals:
 			wordTotals[word] = 1
@@ -24,6 +28,7 @@ def main():
 	resultKey = "";
 	resultValue = 0;
 
+	# iterate through the dictionary to find the most common word
 	for key in wordTotals.keys():
 		if wordTotals[key] > resultValue:
 			resultKey = key
