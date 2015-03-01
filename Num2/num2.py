@@ -4,15 +4,19 @@ import sys
 import zipfile
 from os.path import basename
 
-# File ordering is not correct
+# File ordering may not be correct?
 def main():
+	#  Ensure valid num of arguments
 	if len(sys.argv) !=  2:
 		sys.exit("Invalid number of arguments")
 
 	zipfile = getZipFile(sys.argv[1])
 
+	# Grab each file present within the zipped folder and all sub-folders
 	for file in zipfile.infolist():
+		#  Remove all but basename on the file path
 		filename = basename(file.filename)
+		#  Ensure it isn't a folder
 		if filename != "":
 			print filename, " ",  formatBytes(file.file_size) 
 
